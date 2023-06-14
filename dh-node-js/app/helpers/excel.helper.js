@@ -1,3 +1,4 @@
+const { error } = require("winston");
 const { logger } = require("../config/logger/logger");
 
 const validateRowData = (row) => {
@@ -13,7 +14,8 @@ const validateRowData = (row) => {
             return true;
         }
     } catch (err) {
-        console.log(err)
+        reject(err);
+        // return false;
     }
 }
 
@@ -76,6 +78,16 @@ const isValidDate = (startDate, endDate) => {
         }
     } catch(err) {
         console.log(err);
+        return false;
+    }
+}
+
+const validEntry=(data)=>{
+    if(!data || (data && data.length == 0)){
+        return false;
+    }
+    else{
+        return false;
     }
 }
 
@@ -83,5 +95,6 @@ module.exports = {
     validateRowData,
     getMissingFields,
     validateHeaders,
-    isValidDate
+    isValidDate,
+    validEntry
 }

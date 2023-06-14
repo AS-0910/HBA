@@ -3,8 +3,9 @@ const path = require('path')
 const fileSystem = require("fs");
 const xlsx = require('xlsx');
 
+
 const dB = require('../models');
-const { validateRowData, getMissingFields, validateHeaders, isValidDate } = require('../helpers/excel.helper');
+const { validateRowData, getMissingFields, validateHeaders, isValidDate ,validEntry } = require('../helpers/excel.helper');
 const { logger } = require('../config/logger/logger');
 const Files = dB.files;
 const Subject = dB.subjects;
@@ -36,7 +37,7 @@ const upload = (file) => {
       const data = xlsx.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]], { raw: false })
       logger.info('Total Data Length :::' + data.length)
 
-      if (!data || (data && data.length == 0)) {
+      if (!validEntry(data)) {
         isFileProcessed = false;
         logger.error('File is empty')
         return reject({ message: "Error - File is empty!" });
@@ -92,6 +93,7 @@ const upload = (file) => {
               };
 
               subjects.push(subj);
+             
             }
 
           }
