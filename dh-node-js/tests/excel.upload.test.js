@@ -1,9 +1,9 @@
-const { upload } = require('../../app/services/excel.service'); // Replace 'your-file.js' with the actual file path
+const { upload } = require('../app/services/excel.service'); // Replace 'your-file.js' with the actual file path
 const xlsx = require('xlsx')
-const { validateRowData, getMissingFields, validateHeaders, isValidDate ,validEntry } = require('../../app/helpers/excel.helper');
+const { validateRowData, getMissingFields, validateHeaders, isValidDate ,validEntry } = require('../app/helpers/excel.helper');
 const { error } = require('winston');
 const mockDatabase = require('./mockdatabase');
-jest.mock('../../app/helpers/excel.helper');
+jest.mock('../app/helpers/excel.helper');
 // Mock dependencies and setup test data
 const loggerMock = {
     info: jest.fn(),

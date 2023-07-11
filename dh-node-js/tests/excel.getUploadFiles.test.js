@@ -1,5 +1,5 @@
-const { getUploadedFiles } = require('../../app/services/excel.service'); // Import the function to be tested
-const dB = require('../models');
+const { getUploadedFiles } = require('../app/services/excel.service'); // Import the function to be tested
+const dB = require('../app/models');
 const Files = dB.files;
 
 describe('YourCodeFile', () => {
